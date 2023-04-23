@@ -17,15 +17,21 @@ public class Controller {
 
     @GetMapping(value = "/hello")
     @ResponseBody
-    public String hello(@RequestParam String comingOrGoing) {
-        if (comingOrGoing.equals("coming")) {
-            return service.hello();
+    public String hello(@RequestParam String comingOrGoing) throws Exception {
+        if (comingOrGoing != null) {
+            if (comingOrGoing.equals("coming")) {
+                return hello();
+            } else if (comingOrGoing.equals("going")) {
+                return service.goodbye();
+            }
         }
-        return goodbye();
+        if (comingOrGoing == null) {
+            throw new Exception("comingOrGoing is null. Must be 'coming' or 'going'.");
+        }
+        throw new Exception("comingOrGoing must be 'coming' or 'going'.");
     }
+        private String hello() {
+            return "Hello from the controller";
+        }
 
-    private String goodbye() {
-        return "Goodbye from the controller";
     }
-
-}
