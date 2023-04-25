@@ -27,14 +27,15 @@ public class Controller {
         }
         throw new Exception("comingOrGoing must be 'coming' or 'going'.");
     }
-        private String hello() {
-            return "Hello from the controller";
-        }
+
+    private String hello() {
+        return "Hello from the controller";
+    }
 
     @ExceptionHandler
-    private Exception handle(Exception e){
+    private Exception handle(Exception e) {
         System.out.println("Whoops: " + e.getMessage());
         return e;
     }
 
-    }
+}
