@@ -1,10 +1,7 @@
 package com.cw.springscratchweb.controller;
 
 import com.cw.springscratchweb.service.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Controller {
@@ -33,5 +30,11 @@ public class Controller {
         private String hello() {
             return "Hello from the controller";
         }
+
+    @ExceptionHandler
+    private Exception handle(Exception e){
+        System.out.println("Whoops: " + e.getMessage());
+        return e;
+    }
 
     }
