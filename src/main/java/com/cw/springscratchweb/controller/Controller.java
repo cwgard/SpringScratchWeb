@@ -3,12 +3,16 @@ package com.cw.springscratchweb.controller;
 import com.cw.springscratchweb.service.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.logging.Logger;
+
 @RestController
 public class Controller {
 
     private final Service service;
+    private Logger logger;
 
-    public Controller(Service service) {
+    public Controller(Logger logger, Service service) {
+        this.logger = logger;
         this.service = service;
     }
 
@@ -28,13 +32,14 @@ public class Controller {
         throw new Exception("comingOrGoing must be 'coming' or 'going'.");
     }
 
-    private String hello() {
+    public String hello() {
         return "Hello from the controller";
     }
 
     @ExceptionHandler
     private Exception handle(Exception e) {
         System.out.println("Whoops: " + e.getMessage());
+        logger.info("Whoops from the logger!");
         return e;
     }
 
